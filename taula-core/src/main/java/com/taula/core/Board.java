@@ -19,10 +19,6 @@ public class Board {
       Point toPoint) {
   }
 
-  public void knockoutStone(Stone stone,
-      Point point) {
-  }
-
   public void bearoffStone(Stone stone,
       Point point) {
   }

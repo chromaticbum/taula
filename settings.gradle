@@ -1,2 +1,4 @@
 rootProject.name = 'taula'
 
+include ":taula-core"
+include ":taula-server"

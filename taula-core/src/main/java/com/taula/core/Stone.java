@@ -1,5 +1,6 @@
 package com.taula.core;
 
+
 public class Stone {
   private Color color;
 

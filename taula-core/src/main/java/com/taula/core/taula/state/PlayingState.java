@@ -1,15 +1,21 @@
-package com.taula.core.taula.game_state;
-
-import com.taula.core.Roll;
-import com.taula.core.taula.*;
-import com.taula.core.taula.game_command.*;
+package com.taula.core.taula.state;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Created by hwilkins on 12/25/14.
- */
+import com.taula.core.Roll;
+import com.taula.core.taula.BearoffResult;
+import com.taula.core.taula.CommandResult;
+import com.taula.core.taula.Game;
+import com.taula.core.taula.MoveResult;
+import com.taula.core.taula.Player;
+import com.taula.core.taula.command.BearoffStone;
+import com.taula.core.taula.command.EndTurn;
+import com.taula.core.taula.command.GameCommand;
+import com.taula.core.taula.command.MoveStone;
+import com.taula.core.taula.command.Undo;
+
+
 public class PlayingState extends BaseGameState {
     private final Player player;
     private final Roll roll;

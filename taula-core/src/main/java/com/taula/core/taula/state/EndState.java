@@ -1,12 +1,10 @@
-package com.taula.core.taula.game_state;
+package com.taula.core.taula.state;
 
 import com.taula.core.taula.Game;
 import com.taula.core.taula.Player;
-import com.taula.core.taula.game_command.GameCommand;
+import com.taula.core.taula.command.GameCommand;
 
-/**
- * Created by hwilkins on 12/25/14.
- */
+
 public class EndState extends BaseGameState {
     private final Player player;
 

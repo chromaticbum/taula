@@ -2,9 +2,7 @@ package com.taula.core;
 
 import java.util.Random;
 
-/**
- * Created by hwilkins on 12/25/14.
- */
+
 public class Roll {
     private static final Random rand = new Random();
     private final int die1, die2;

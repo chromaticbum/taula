@@ -1,14 +1,12 @@
-package com.taula.core.taula.game_state;
+package com.taula.core.taula.state;
 
 import com.taula.core.Roll;
 import com.taula.core.taula.Game;
 import com.taula.core.taula.Player;
-import com.taula.core.taula.game_command.GameCommand;
-import com.taula.core.taula.game_command.Start;
+import com.taula.core.taula.command.GameCommand;
+import com.taula.core.taula.command.Start;
 
-/**
- * Created by hwilkins on 12/25/14.
- */
+
 public class StartingState extends BaseGameState {
     public StartingState(Game game) {
         super(game);

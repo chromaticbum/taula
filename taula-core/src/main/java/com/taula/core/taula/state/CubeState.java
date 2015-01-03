@@ -1,14 +1,12 @@
-package com.taula.core.taula.game_state;
+package com.taula.core.taula.state;
 
 import com.taula.core.taula.Game;
 import com.taula.core.taula.Player;
-import com.taula.core.taula.game_command.AcceptCube;
-import com.taula.core.taula.game_command.GameCommand;
-import com.taula.core.taula.game_command.RejectCube;
+import com.taula.core.taula.command.AcceptCube;
+import com.taula.core.taula.command.GameCommand;
+import com.taula.core.taula.command.RejectCube;
 
-/**
- * Created by hwilkins on 12/25/14.
- */
+
 public class CubeState extends BaseGameState {
     // Player who offered the cube
     private final Player player;

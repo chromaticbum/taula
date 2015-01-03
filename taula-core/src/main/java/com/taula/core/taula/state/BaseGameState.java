@@ -1,10 +1,8 @@
-package com.taula.core.taula.game_state;
+package com.taula.core.taula.state;
 
 import com.taula.core.taula.Game;
 
-/**
- * Created by hwilkins on 12/25/14.
- */
+
 public abstract class BaseGameState implements GameState {
     final Game game;
 

@@ -2,9 +2,8 @@ package com.taula.core.taula.state;
 
 import com.taula.core.taula.Game;
 import com.taula.core.taula.Player;
-import com.taula.core.taula.command.AcceptCube;
 import com.taula.core.taula.command.GameCommand;
-import com.taula.core.taula.command.RejectCube;
+import com.taula.core.taula.state.visitor.CubeStateVisitor;
 
 
 public class CubeState extends BaseGameState {
@@ -18,15 +17,11 @@ public class CubeState extends BaseGameState {
     }
 
     @Override
-    public GameState execute(GameCommand command) {
-        if(command instanceof AcceptCube) {
-            game.doubleWinValue();
+    public void execute(Game game, GameCommand command) {
+        command.accept(new CubeStateVisitor(this));
+    }
 
-            return new UnrolledState(game, player);
-        } else if(command instanceof RejectCube) {
-            return new EndState(game, player);
-        }
-
-        throw new IllegalStateException();
+    public Player getPlayer() {
+        return player;
     }
 }

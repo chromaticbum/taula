@@ -34,7 +34,7 @@ public class Game {
     }
 
     public void execute(GameCommand command) {
-        state = state.execute(command);
+        state.execute(this, command);
     }
 
     public void doubleWinValue() {

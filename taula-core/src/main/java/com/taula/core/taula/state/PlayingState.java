@@ -4,16 +4,11 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.taula.core.Roll;
-import com.taula.core.taula.BearoffResult;
 import com.taula.core.taula.CommandResult;
 import com.taula.core.taula.Game;
-import com.taula.core.taula.MoveResult;
 import com.taula.core.taula.Player;
-import com.taula.core.taula.command.BearoffStone;
-import com.taula.core.taula.command.EndTurn;
 import com.taula.core.taula.command.GameCommand;
-import com.taula.core.taula.command.MoveStone;
-import com.taula.core.taula.command.Undo;
+import com.taula.core.taula.state.visitor.PlayingStateVisitor;
 
 
 public class PlayingState extends BaseGameState {
@@ -30,75 +25,31 @@ public class PlayingState extends BaseGameState {
     }
 
     @Override
-    public GameState execute(GameCommand command) {
-        if(command instanceof MoveStone) {
-            MoveStone move = (MoveStone)command;
+    public void execute(Game game, GameCommand command) {
+        command.accept(new PlayingStateVisitor(this));
+    }
 
-            if(validMove(move)) {
-                this.move(move);
-                return this;
-            }
-        } else if(command instanceof BearoffStone) {
-            BearoffStone bearoff = (BearoffStone)command;
+    public Player getPlayer() {
+        return player;
+    }
 
-            if(validBearoff(bearoff)) {
-                this.bearoff(bearoff);
-                return this;
-            }
-        } else if(command instanceof Undo) {
-            undo();
-        } else if(command instanceof EndTurn) {
-            if(canEndTurn()) {
-                return endTurn();
-            }
-        }
+    public Roll getRoll() {
+        return roll;
+    }
 
-        throw new IllegalStateException();
+    public void push(CommandResult result) {
+        results.push(result);
     }
 
     private void undo() {
         CommandResult result = results.pop();
 
         if(result != null) {
-            result.undo(game);
+            result.undo(getGame());
         }
     }
 
-    private CommandResult move(MoveStone move) {
-        // TODO: Actually move the pieces on the board
-        // Knockout any required pieces and store it
-        // in the move result so it can be undone
-        MoveResult result = new MoveResult(player, move);
-        results.push(result);
-
-        return result;
-    }
-
-    private boolean validMove(MoveStone move) {
-        // TODO: run actual validations here
-        return true;
-    }
-
-    private CommandResult bearoff(BearoffStone bearoff) {
-        // TODO: actually bearoff the stone on the board
-        BearoffResult result = new BearoffResult(player, bearoff);
-        results.push(result);
-
-        return result;
-    }
-
-    private boolean validBearoff(BearoffStone bearoff) {
-        // TODO: run bearoff validations here
-        return true;
-    }
-
-    private GameState endTurn() {
-        // TODO: return EndState is the player has beared off all stones
-        return new UnrolledState(game, game.otherPlayer(player));
-    }
-
-    private boolean canEndTurn() {
-        // TODO: make sure we have used all of our roll
-        return true;
+    public Deque<CommandResult> getResults() {
+        return results;
     }
 }

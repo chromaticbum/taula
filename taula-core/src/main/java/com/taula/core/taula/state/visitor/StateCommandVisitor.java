@@ -1,4 +1,4 @@
-package com.taula.core.taula.state;
+package com.taula.core.taula.state.visitor;
 
 import com.taula.core.taula.command.AcceptCube;
 import com.taula.core.taula.command.BearoffStone;
